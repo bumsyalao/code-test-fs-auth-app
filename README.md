@@ -71,6 +71,11 @@ Both applications include test suites that can be run with:
 npm test
 ```
 
+## Demo
+
+![1](https://res.cloudinary.com/dcpfdxsly/image/upload/v1741037110/Screenshot_2025-03-04_at_1.23.56_AM_itshmy.png)
+![2](https://res.cloudinary.com/dcpfdxsly/image/upload/v1741037110/Screenshot_2025-03-04_at_1.23.45_AM_da1dsq.png)
+
 ## Project Documentation
 
 See the separate README files in the frontend and backend directories for detailed instructions.
