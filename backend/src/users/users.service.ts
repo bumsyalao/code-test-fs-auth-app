@@ -16,7 +16,7 @@ export class UsersService {
     private logger: LoggerService,
   ) {}
 
-  async create(createUserDto: CreateUserDto): Promise<User> {
+  async create(createUserDto: CreateUserDto): Promise<UserDocument> {
     this.logger.log(
       `Creating new user with email: ${createUserDto.email}`,
       'UsersService',
@@ -39,7 +39,7 @@ export class UsersService {
     return newUser.save();
   }
 
-  async findByEmail(email: string): Promise<User> {
+  async findByEmail(email: string): Promise<UserDocument> {
     this.logger.log(`Finding user by email: ${email}`, 'UsersService');
 
     const user = await this.userModel.findOne({ email }).exec();
@@ -51,7 +51,7 @@ export class UsersService {
     return user;
   }
 
-  async findById(id: string): Promise<User> {
+  async findById(id: string): Promise<UserDocument> {
     this.logger.log(`Finding user by id: ${id}`, 'UsersService');
 
     const user = await this.userModel.findById(id).exec();

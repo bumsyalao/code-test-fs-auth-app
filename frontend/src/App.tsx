@@ -1,26 +1,36 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import { AuthProvider } from './contexts/AuthContext';
+import SignUp from './components/SignUp';
+import SignIn from './components/SignIn';
+import Application from './components/Application';
+import Navigation from './components/Navigation';
+import ProtectedRoute from './components/ProtectedRoute';
+import './styles/styles.css';
 
-function App() {
+const App: React.FC = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <AuthProvider>
+      <Router>
+        <div className="flex flex-col min-h-screen">
+          <Navigation />
+          <main className="flex-grow">
+            <Routes>
+              <Route path="/" element={<Navigate to="/app" replace />} />
+              <Route path="/signup" element={<SignUp />} />
+              <Route path="/signin" element={<SignIn />} />
+              
+              <Route element={<ProtectedRoute />}>
+                <Route path="/app" element={<Application />} />
+              </Route>
+              
+              <Route path="*" element={<Navigate to="/app" replace />} />
+            </Routes>
+          </main>
+        </div>
+      </Router>
+    </AuthProvider>
   );
-}
+};
 
 export default App;

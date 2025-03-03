@@ -1,6 +1,7 @@
 import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { UsersService } from '../users/users.service';
+import { UserDocument } from '../users/schemas/user.schema';
 import { SignupDto } from './dto/signup.dto';
 import { SigninDto } from './dto/signin.dto';
 import { JwtPayload } from './interfaces/jwt-payload.interface';
@@ -14,14 +15,16 @@ export class AuthService {
     private logger: LoggerService,
   ) {}
 
-  async signup(signupDto: SignupDto) {
+  async signup(
+    signupDto: SignupDto,
+  ): Promise<{ user: UserDocument; accessToken: string }> {
     this.logger.log(
       `User signup attempt with email: ${signupDto.email}`,
       'AuthService',
     );
 
     // Create a new user
-    const user = await this.usersService.create(signupDto);
+    const user: UserDocument = await this.usersService.create(signupDto);
 
     // Generate JWT token
     const payload: JwtPayload = { sub: user._id.toString(), email: user.email };
@@ -38,7 +41,9 @@ export class AuthService {
     };
   }
 
-  async signin(signinDto: SigninDto) {
+  async signin(
+    signinDto: SigninDto,
+  ): Promise<{ user: UserDocument; accessToken: string }> {
     this.logger.log(
       `User signin attempt with email: ${signinDto.email}`,
       'AuthService',
@@ -46,7 +51,9 @@ export class AuthService {
 
     try {
       // Find user by email
-      const user = await this.usersService.findByEmail(signinDto.email);
+      const user: UserDocument = await this.usersService.findByEmail(
+        signinDto.email,
+      );
 
       // Validate password
       const isPasswordValid = await user.comparePassword(signinDto.password);

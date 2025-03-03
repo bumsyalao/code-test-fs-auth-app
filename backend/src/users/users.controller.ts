@@ -23,7 +23,7 @@ export class UsersController {
     description: 'Returns the current user profile',
     type: User,
   })
-  async getProfile(@GetUser() user: User): Promise<User> {
+  getProfile(@GetUser() user: Promise<User>): Promise<User> {
     return user;
   }
 }
