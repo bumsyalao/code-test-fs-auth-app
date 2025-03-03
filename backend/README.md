@@ -105,10 +105,14 @@ This project implements several security best practices:
 ## Logging
 
 Application logs are stored in the `logs` directory:
-- `
+ ```bash
+cd backend/logs
+```
+
 
 ## Project Structure
 
+```
 backend/
 ├── logs
 ├── src/
@@ -128,7 +132,7 @@ backend/
 │   ├── common/          # Shared resources
 │   │   └── logging/     # Logging configuration
 │   ├── config/          # Shared resources
-│   │   └── configuration.ts     # app configuration
+│   │   └── configuration.ts
 │   ├── app.module.ts
 │   ├── app.service.ts
 │   ├── app.controller.ts
@@ -137,3 +141,4 @@ backend/
 ├── nest-cli.json
 ├── package.json
 └── tsconfig.json
+```
