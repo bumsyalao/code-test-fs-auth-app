@@ -13,7 +13,7 @@ const Application: React.FC = () => {
               Welcome to the application
             </h3>
             <p className="mt-1 max-w-2xl text-sm text-gray-500">
-              You've successfully authenticated.
+              You are successfully authenticated.
             </p>
           </div>
           <div className="border-t border-gray-200">

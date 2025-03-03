@@ -5,7 +5,7 @@ import { UserDocument } from '../users/schemas/user.schema';
 import { SignupDto } from './dto/signup.dto';
 import { SigninDto } from './dto/signin.dto';
 import { JwtPayload } from './interfaces/jwt-payload.interface';
-import { LoggerService } from '../logger/logger.service';
+import { LoggerService } from '../common/logger/logger.service';
 
 @Injectable()
 export class AuthService {

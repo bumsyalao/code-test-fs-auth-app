@@ -46,6 +46,11 @@ Replace the values with your actual configuration.
 ## Running the API
 
 ```bash
+cd backend
+npm install
+```
+
+```bash
 # Development mode
 npm run start:dev
 
@@ -72,6 +77,8 @@ http://localhost:3001/api/docs
 ### Users
 
 - `GET /users/profile` - Get current user profile (protected endpoint)
+    - Headers: `Authorization: Bearer {token}`
+    - Returns: User profile data
 
 ## Testing
 
@@ -99,3 +106,34 @@ This project implements several security best practices:
 
 Application logs are stored in the `logs` directory:
 - `
+
+## Project Structure
+
+backend/
+├── logs
+├── src/
+│   ├── auth/            # Authentication module
+│   │   ├── dto/         # Data Transfer Objects
+│   │   ├── guards/      # JWT Auth Guards
+│   │   ├── strategies/  # Passport strategies
+│   │   ├── auth.controller.ts
+│   │   ├── auth.module.ts
+│   │   └── auth.service.ts
+│   ├── users/           # Users module
+│   │   ├── dto/
+│   │   ├── schemas/     # Mongoose schemas
+│   │   ├── users.controller.ts
+│   │   ├── users.module.ts
+│   │   └── users.service.ts
+│   ├── common/          # Shared resources
+│   │   └── logging/     # Logging configuration
+│   ├── config/          # Shared resources
+│   │   └── configuration.ts     # app configuration
+│   ├── app.module.ts
+│   ├── app.service.ts
+│   ├── app.controller.ts
+│   └── main.ts
+├── .env                 # Environment variables
+├── nest-cli.json
+├── package.json
+└── tsconfig.json
